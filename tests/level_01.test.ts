@@ -138,16 +138,16 @@ describe('level_01', () => {
 
         it('should find the car with smallest power', () => {
             const car = cars.findCarWithSmallestPower([
-                cars.createCar('green', 15),
-                cars.createCar('white', 20),
-                cars.createCar('blue', 10),
-                cars.createCar('yellow', 25),
-                cars.createCar('black', 30),
+                cars.createCar('green', 45),
+                cars.createCar('white', 45),
+                cars.createCar('blue', 35),
+                cars.createCar('yellow', 45),
+                cars.createCar('black', 45),
             ]);
 
             expect(car).toEqual({
                 color: 'blue',
-                power: 10,
+                power: 35,
             });
         });
 
