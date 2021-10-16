@@ -2,7 +2,7 @@
 * THis interface describes a car.
 * power is the horsepower of the cars, color is the color of the car (duh)
 */
-interface Car {
+export interface Car {
     power: number;
     color: string;
 };
