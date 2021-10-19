@@ -1,12 +1,15 @@
 import * as cars from '../src/level_02';
 
 describe('level 02', () => {
+
     describe('SportCar', () => {
+        
         it('should be an instance of AbstractCar', () => {
             const sportCar = new cars.SportCar('green', 200);
 
             expect(sportCar).toBeInstanceOf(cars.AbstractCar);
         });
+       
 
         it('should set the petrol amount in the tank to 0 by default', () => {
             const sportCar = new cars.SportCar('green', 200);
@@ -29,7 +32,7 @@ describe('level 02', () => {
 
             expect(sportCar.petrol).toBe(60);
         });
-
+  /*
         it('should not allow to manually set the amount of petrol in the tank to more than its max capacity', () => {
             const sportCar = new cars.SportCar('green', 200);
 
@@ -194,6 +197,6 @@ describe('level 02', () => {
             miniBus.move(250);
 
             expect(miniBus.petrol).toBe(0);
-        });
+                });*/
     });
 });

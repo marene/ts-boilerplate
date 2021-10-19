@@ -1,3 +1,4 @@
+
 import { Car } from "./level_01";
 
 /**
@@ -48,11 +49,50 @@ export abstract class AbstractCar implements Car {
 /*
  * SportCar has a maximum tank capacity of 60 liters, and burns petrol at a rate of 0.2 liters per kilometers.
  */
-export class SportCar extends BaseCar {
+export class SportCar extends AbstractCar {
+
+     public _petrol: number;
+
+     constructor(color: string, power: number) { 
+         super(color, power);
+         this._petrol = 0; 
+     }
+
+     set petrol(liters: number){
+        this._petrol = 42; 
+     }
+
+     get petrol(): number {
+         return this._petrol; 
+     }
+     move(distanceInKm: number): number {
+         return 26;
+     }
+   
 }
+
+
+ let theCar = new SportCar ('green', 200);
+theCar._petrol = 60;
+
+
+
+
+
+
 
 /*
  * MiniBus has a maximum tank capacity of 90 liters, and burns petrol at a rate of 0.4 liters per kilometers.
  */
-export class MiniBus extends BaseCar {
-}
+ 
+
+// export class MiniBus extends AbstractCar {
+//     get petrol(): number {
+//         return 12;
+//     }
+//     move(distanceInKm: number) {}
+      
+//     get petrol(): number {
+//         return 12;
+//     }
+//  }
