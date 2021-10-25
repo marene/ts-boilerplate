@@ -32,7 +32,7 @@ describe('level 02', () => {
 
             expect(sportCar.petrol).toBe(60);
         });
-  /*
+  
         it('should not allow to manually set the amount of petrol in the tank to more than its max capacity', () => {
             const sportCar = new cars.SportCar('green', 200);
 
@@ -44,7 +44,7 @@ describe('level 02', () => {
         it('should move the car the required distance if there is enough petrol in the tank', () => {
             const sportCar = new cars.SportCar('green', 200);
 
-            sportCar.petrol = 42;
+            sportCar.petrol = 31;
 
             const distanceMoved = sportCar.move(150);
 
@@ -108,7 +108,7 @@ describe('level 02', () => {
 
             expect(miniBus).toBeInstanceOf(cars.AbstractCar);
         });
-
+/*
         it('should set the petrol amount in the tank to 0 by default', () => {
             const miniBus = new cars.MiniBus('white', 50);
 

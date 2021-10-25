@@ -1,5 +1,6 @@
 
-import { Car } from "./level_01";
+
+import { Car} from "./level_01";
 
 /**
  * Here we expand a bit on the theme of cars, and take the opportunity to visit the subject of classes and extension
@@ -51,7 +52,7 @@ export abstract class AbstractCar implements Car {
  */
 export class SportCar extends AbstractCar {
 
-     public _petrol: number;
+     private _petrol: number;
 
      constructor(color: string, power: number) { 
          super(color, power);
@@ -59,40 +60,64 @@ export class SportCar extends AbstractCar {
      }
 
      set petrol(liters: number){
-        this._petrol = 42; 
+        if (liters > 60){
+            this._petrol = 60;
+        } else {
+            this._petrol = liters;
+        }
      }
 
      get petrol(): number {
          return this._petrol; 
      }
+
      move(distanceInKm: number): number {
-         return 26;
+        const maxDistance = this._petrol / 0.2; 
+        // let validatedDistanceKm = 0;
+
+        // if (distanceInKm > maxDistance) {
+        //     validatedDistanceKm = maxDistance;
+        // } else {
+        //     validatedDistanceKm = distanceInKm;
+        // }
+
+        const validatedDistanceKm = distanceInKm > maxDistance 
+            ? maxDistance
+            : distanceInKm
+       
+        /*
+        1 - const consumption = volumeInTheTank / distance; <-- this one we know (0.2)
+        2 - const distance = volume / consumption;
+        3 - const volume = distance * consumption;
+        */
+
+        const petrolConsumed = validatedDistanceKm * 0.2;
+        this._petrol = this._petrol - petrolConsumed;
+
+        return validatedDistanceKm; 
      }
-   
+       
 }
 
 
- let theCar = new SportCar ('green', 200);
-theCar._petrol = 60;
 
-
-
-
-
-
-
-/*
- * MiniBus has a maximum tank capacity of 90 liters, and burns petrol at a rate of 0.4 liters per kilometers.
- */
+ //MiniBus has a maximum tank capacity of 90 liters, and burns petrol at a rate of 0.4 liters per kilometers.
+ 
  
 
-// export class MiniBus extends AbstractCar {
-//     get petrol(): number {
-//         return 12;
-//     }
-//     move(distanceInKm: number) {}
-      
-//     get petrol(): number {
-//         return 12;
-//     }
-//  }
+export class MiniBus extends AbstractCar {
+    get petrol(): number {
+        return 0; 
+    }
+
+    set petrol(liters: number){}
+    
+    move(distanceInKm: number) : number {
+        return 0; 
+    }
+    
+ }
+
+ let theCar = new MiniBus ('white', 50); 
+
+ theCar.petrol = 0; 
