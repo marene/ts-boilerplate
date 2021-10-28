@@ -1,6 +1,3 @@
-import { Student } from './level_03';
-
-
 
 export class Student {
     constructor(private readonly _age: number, private readonly _name: string) {}
@@ -27,37 +24,29 @@ export class Classroom {
         return;
     }
 
-    
-
     findYoungestStudent(): Student|void {
-        //const youngest = this._students.Math.min(Student, 0);
-        const students = this._students;
-        const youngest = students.find( student => students.length.Math.min(students))
-
-        // let minimunAge = this._students[0];
-       
-        // for (let i= 0; i < this._students.length; i++) {
-        //     if(this._students[i] < minimunAge){
-        //     minimunAge = this._students[i];
-        //       } else if (this._students[i] > minimunAge){
-        //           this._students.Math.max(this.students [i];
-        //       }
-        //  return;
-        //return new Student(0, 'John Doe')
-       return youngest; 
-    
+        const sortedStudents = this._students.sort((a, b)=> a.age - b.age); 
+        return sortedStudents[0]; 
         }
 
     findOldestStudent(): Student|void {
-        return new Student(99, 'John Doe')
+        const oldestStudent = this._students.sort((a, b)=> b.age - a.age)[0];
+
+        return oldestStudent;
     }
 
     getSortedNamesList(): string[] {
-        return [];
+        const sortedNamesList = this._students.sort((a, b) => a.name.localeCompare(b.name));
+        return sortedNamesList.map(name => name.name); 
+        //ASCII    
     }
 
-    removeStudentsByName(name: string): void {
-    }
+    removeStudentsByName(nameToRemove: string): void { 
+        this._students = this._students.filter(student => student.name !== nameToRemove);
         
-        
-    } 
+        // studentsByName must contain all students EXCEPT the ones that have "nameToRemove" as a name
+        // TRUE if student is not named "nameToRemove"
+        // FALSE is student is named "nameToRemove"
+        // RECURSIVE functions (exit condition)
+    }     
+} 
