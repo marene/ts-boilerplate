@@ -1,6 +1,5 @@
 
-
-import { Car} from "./level_01";
+import {Car} from "./level_01";
 
 /**
  * Here we expand a bit on the theme of cars, and take the opportunity to visit the subject of classes and extension
@@ -47,21 +46,21 @@ export abstract class AbstractCar implements Car {
     abstract move(distanceInKm: number): number;
 };
 
-/*
- * SportCar has a maximum tank capacity of 60 liters, and burns petrol at a rate of 0.2 liters per kilometers.
- */
-export class SportCar extends AbstractCar {
+class BaseCar extends AbstractCar {
+    private _petrol: number;
+    protected _consumption: number;
+    protected _tankCapacity: number;
 
-     private _petrol: number;
+    constructor(color: string, power: number) { 
+        super(color, power);
+        this._petrol = 0;
+        this._consumption = 0;
+        this._tankCapacity = 0;
+    }
 
-     constructor(color: string, power: number) { 
-         super(color, power);
-         this._petrol = 0; 
-     }
-
-     set petrol(liters: number){
-        if (liters > 60){
-            this._petrol = 60;
+    set petrol(liters: number){
+        if (liters > this._tankCapacity){
+            this._petrol = this._tankCapacity;
         } else {
             this._petrol = liters;
         }
@@ -72,15 +71,7 @@ export class SportCar extends AbstractCar {
      }
 
      move(distanceInKm: number): number {
-        const maxDistance = this._petrol / 0.2; 
-        // let validatedDistanceKm = 0;
-
-        // if (distanceInKm > maxDistance) {
-        //     validatedDistanceKm = maxDistance;
-        // } else {
-        //     validatedDistanceKm = distanceInKm;
-        // }
-
+        const maxDistance = this._petrol / this._consumption;
         const validatedDistanceKm = distanceInKm > maxDistance 
             ? maxDistance
             : distanceInKm
@@ -91,33 +82,35 @@ export class SportCar extends AbstractCar {
         3 - const volume = distance * consumption;
         */
 
-        const petrolConsumed = validatedDistanceKm * 0.2;
+        const petrolConsumed = validatedDistanceKm * this._consumption;
         this._petrol = this._petrol - petrolConsumed;
 
         return validatedDistanceKm; 
      }
-       
 }
 
-
+/*
+ * SportCar has a maximum tank capacity of 60 liters, and burns petrol at a rate of 0.2 liters per kilometers.
+ */
+export class SportCar extends BaseCar {
+     constructor(color: string, power: number) { 
+         super(color, power);
+         this._consumption = 0.2;
+         this._tankCapacity = 60;
+     }      
+}
 
  //MiniBus has a maximum tank capacity of 90 liters, and burns petrol at a rate of 0.4 liters per kilometers.
  
- 
 
-export class MiniBus extends AbstractCar {
-    get petrol(): number {
-        return 0; 
+export class MiniBus extends BaseCar {
+    constructor(color: string, power: number) { 
+        super(color, power);
+        this._consumption = 0.4;
+        this._tankCapacity = 90;
     }
-
-    set petrol(liters: number){}
-    
-    move(distanceInKm: number) : number {
-        return 0; 
-    }
-    
  }
 
- let theCar = new MiniBus ('white', 50); 
+ let miniBus = new MiniBus ('white', 50); 
 
- theCar.petrol = 0; 
+miniBus.petrol = 0; 

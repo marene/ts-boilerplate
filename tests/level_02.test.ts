@@ -108,7 +108,7 @@ describe('level 02', () => {
 
             expect(miniBus).toBeInstanceOf(cars.AbstractCar);
         });
-/*
+
         it('should set the petrol amount in the tank to 0 by default', () => {
             const miniBus = new cars.MiniBus('white', 50);
 
@@ -197,6 +197,6 @@ describe('level 02', () => {
             miniBus.move(250);
 
             expect(miniBus.petrol).toBe(0);
-                });*/
+                });
     });
 });
