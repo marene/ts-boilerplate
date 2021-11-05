@@ -1,8 +1,10 @@
 import * as cars from '../src/level_01';
-
-describe('level_01', () => {
+// ./node_modules/.bin/jest ./tests/level_01.test.ts 
+//jest testing library
+// mock mocking
+describe('level_01', () => { // test suite
     describe('createCar', () => {
-        it('should return a car with the right color and power', () => {
+        it('should return a car with the right color and power', () => { // test case
             const car = cars.createCar('green', 42);
 
             expect(car).toEqual({

@@ -1,4 +1,4 @@
-import {biggerOrSmaller, Comparison, countComparisons, filterOdds, filterWithComparison, multiplyAllNumbers} from "../src/level_04";
+    import {biggerOrSmaller, Comparison, countComparisons, filterOdds, filterWithComparison, multiplyAllNumbers} from "../src/level_04";
 
 describe('level_04', () => {
     describe('biggerOrSmaller', () => {
